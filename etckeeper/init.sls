@@ -17,7 +17,8 @@ etckeeper:
 
 /etc/etckeeper/etckeeper.conf:
   file.managed:
-    - source: salt://etckeeper/files/etckeeper.conf
+    - source: salt://etckeeper/files/etckeeper.conf.jinja
+    - template: jinja
     - mode: 0644
     - makedirs: True
     - owner: root
