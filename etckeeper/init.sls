@@ -8,7 +8,6 @@ etckeeper:
 
 /etc/etckeeper:
   file.directory:
-    - clean: True
     - mode: 0755
     - owner: root
     - group: root
@@ -27,37 +26,6 @@ etckeeper:
       - file: /etc/etckeeper
     - require:
       - pkg: etckeeper
-
-{% set subdirs = [
-    'pre-install.d',
-    'post-install.d',
-    'init.d',
-    'uninit.d',
-    'unclean.d',
-    'update-ignore.d',
-    'pre-commit.d',
-    'commit.d',
-    'vcs.d',
-    'list-installed.d'
-    ]
-%}
-
-{% for subdir in subdirs %}
-/etc/etckeeper/{{subdir}}:
-  file.recurse:
-    - source: salt://etckeeper/files/{{subdir}}
-    - clean: True
-    - dir_mode: 0755
-    - file_mode: 0755
-    - makedirs: True
-    - exclude_pat: README
-    - owner: root
-    - group: root
-    - require:
-       - pkg: etckeeper
-    - require_in:
-       - file: /etc/etckeeper
-{% endfor %}
 
 etckeeper_initial_commit:
   cmd.run:
