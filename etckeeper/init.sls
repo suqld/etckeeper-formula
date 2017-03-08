@@ -9,7 +9,7 @@ etckeeper:
 /etc/etckeeper:
   file.directory:
     - mode: 0755
-    - owner: root
+    - user: root
     - group: root
     - require:
       - pkg: etckeeper
@@ -20,7 +20,7 @@ etckeeper:
     - template: jinja
     - mode: 0644
     - makedirs: True
-    - owner: root
+    - user: root
     - group: root
     - require_in:
       - file: /etc/etckeeper
@@ -49,4 +49,3 @@ etckeeper_commit_at_end:
     - cwd: /etc
     - name: '/usr/bin/etckeeper commit "Changes made during salt run #salt-end"'
     - onlyif: 'test -d /etc/.git && test -n "$(git status --porcelain)"'
-
