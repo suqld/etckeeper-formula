@@ -30,7 +30,7 @@ etckeeper:
 etckeeper_initial_commit:
   cmd.run:
     - cwd: /etc
-    - name: "/usr/bin/etckeeper init && SUDO_USER="root" /usr/bin/etckeeper commit 'Initial commit'"
+    - name: "/usr/bin/etckeeper init && SUDO_USER='root' /usr/bin/etckeeper commit 'Initial commit'"
     - require:
       - pkg: etckeeper
       - file: /etc/etckeeper/etckeeper.conf
